@@ -4,9 +4,84 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz!!!!!!!!!!!!</title>
-    <link rel="stylesheet" type="text/css" href="../CSS/index.css">
 </head>
 
+<style>
+/* Resetting default margins and paddings */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Basic styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+}
+
+.quiz-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.question-card {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.question-card h2 {
+    margin-bottom: 10px;
+}
+
+.answer-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 15px;
+}
+
+.answer-card {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    cursor: pointer;
+}
+
+.answer-card.selected {
+    background-color: #cce5ff;
+}
+
+.answer-card:hover {
+    background-color: #f0f0f0;
+}
+
+.submit-container {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.submit-container button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.submit-container button:hover {
+    background-color: #0056b3;
+}
+</style>
 <body>
     <div class="quiz-container">
         <div class="question-card">
@@ -86,6 +161,57 @@
             <button id="submit-btn">Submit</button>
         </div>
     </div>
-    <script src="../Scripts/main.js"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+    const answerCards = document.querySelectorAll(".answer-card");
+    const submitButton = document.getElementById("submit-btn");
+
+    let totalScore = 0;
+
+    answerCards.forEach(card => {
+        card.addEventListener("click", function() {
+            // Remove selection from all cards
+            answerCards.forEach(card => {
+                card.classList.remove("selected");
+            });
+
+            // Add selection to the clicked card
+            this.classList.add("selected");
+
+            // Get the selected answer (stored as data-answer attribute)
+            const selectedAnswer = parseInt(this.getAttribute("data-answer"));
+            console.log("Selected answer:", selectedAnswer);
+
+            // Add the selected answer to the total score
+            totalScore += selectedAnswer;
+            console.log("Total score:", totalScore);
+        });
+    });
+
+    submitButton.addEventListener("click", function() {
+        // Redirect based on total score
+        if (totalScore == 5) {
+            window.location.href = "at5.html";
+        } 
+
+        if (totalScore == 100) {
+            window.location.href = "at100.html";
+        }
+    });
+});
+
+
+///////////////////////////// WEBSITE SPECIFIC FUNCTIONS ////////////////////////////////////////////////
+
+// Fun mode
+function getRandomColor() {
+    return '#' + Math.floor(Math.random()*16777215).toString(16);
+}
+
+function funMode() {
+    document.body.style.backgroundColor = getRandomColor();
+    setInterval(funMode, 1000);
+}
+    </script>
 </body>
 </html>
