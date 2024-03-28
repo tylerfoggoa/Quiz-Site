@@ -9,7 +9,16 @@
 
 <body>
     <h1>How to hell are you here?</h1>
-    <script src="../Scripts/main.js"></script>
+    <script>
+        function getRandomColor() {
+        return '#' + Math.floor(Math.random()*16777215).toString(16);
+        }
+
+        function funMode() {
+            document.body.style.backgroundColor = getRandomColor();
+            setInterval(funMode, 1000);
+        }
+    </script>
 
     <input id="clickme" type="button" value="fun mode!" onclick="funMode();" />
 

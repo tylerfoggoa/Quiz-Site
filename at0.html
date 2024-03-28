@@ -1,0 +1,68 @@
+<h1>You got 0</h1>
+
+<p></p>
+
+<p>i put a lot of work into this and you are being very disrespectful</p>
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Line by Line Animation</title>
+</head>
+
+<body>
+    <style>
+        .container {
+        width: 80%;
+        margin: 50px auto;
+        text-align: center;
+        }
+
+        p {
+        font-size: 24px;
+        font-family: Arial, sans-serif;
+        opacity: 0;
+        }
+    </style>
+
+    <div class="container">
+        <p id="text"></p>
+    </div>
+    <script>
+        const lines = [
+        "Are you even trying to take the quiz?",
+        "I put a lot of work into this",
+        "and you dont even want to take it properly??!!??",
+        "You know what?",
+        "screw you"
+        ];
+
+        const textElement = document.getElementById('text');
+
+        function displayLines(index) {
+        if (index < lines.length) {
+            setTimeout(() => {
+            textElement.textContent += lines[index] + '\n';
+            textElement.style.opacity = '1';
+            displayLines(index + 1);
+            }, 3000); // Adjust this delay as needed (in milliseconds)
+        }
+        }
+
+        displayLines(0);
+
+
+        function openNewTab(url) {
+        window.open(url, '_blank');
+        }
+
+        // Example usage:
+        openNewTab('https://www.example.com');
+    </script>
+</body>
+</html>

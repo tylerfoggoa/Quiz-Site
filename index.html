@@ -7,118 +7,198 @@
 </head>
 
 <style>
-/* Resetting default margins and paddings */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-/* Basic styling */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-}
-
-.quiz-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-.question-card {
+    /* Floating score card */
+.score-card {
+    position: fixed;
+    top: 10px;
+    right: 10px;
     background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 8px;
-    padding: 20px;
-    margin-bottom: 20px;
-}
-
-.question-card h2 {
-    margin-bottom: 10px;
-}
-
-.answer-container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 15px;
-}
-
-.answer-card {
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 20px;
-    cursor: pointer;
-}
-
-.answer-card.selected {
-    background-color: #cce5ff;
-}
-
-.answer-card:hover {
-    background-color: #f0f0f0;
-}
-
-.submit-container {
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 20px;
-    cursor: pointer;
-    text-align: center;
-}
-
-.submit-container button {
     padding: 10px 20px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 999;
 }
 
-.submit-container button:hover {
-    background-color: #0056b3;
+.score-card p {
+    margin: 0;
 }
+
+.score-card #total-score {
+    font-weight: bold;
+}
+
+    body {
+    font-family: Arial, sans-serif;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    }
+
+    .popup-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .popup {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        text-align: center;
+    }
+
+    .popup h2 {
+        margin-bottom: 10px;
+        color: red;
+    }
+
+    .popup p {
+        margin-bottom: 20px;
+    }
+
+    .close-btn {
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .close-btn:hover {
+        background-color: #0056b3;
+    }
+
+    /* Resetting default margins and paddings */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    /* Basic styling */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+    }
+
+    .quiz-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    .question-card {
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+
+    .question-card h2 {
+        margin-bottom: 10px;
+    }
+
+    .answer-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 15px;
+    }
+
+    .answer-card {
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        padding: 20px;
+        cursor: pointer;
+    }
+
+    .answer-card.selected {
+        background-color: #cce5ff;
+    }
+
+    .answer-card:hover {
+        background-color: #f0f0f0;
+    }
+
+    .submit-container {
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        padding: 20px;
+        cursor: pointer;
+        text-align: center;
+    }
+
+    .submit-container button {
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .submit-container button:hover {
+        background-color: #0056b3;
+    }
 </style>
 <body>
+    <div class="popup">
+        <h2>Warning!</h2>
+        <p>GitHub doesn't save any information you put on the site</p>
+        <p>You are responsible for remembering how to get to specific pages</p>
+        <p>If you are lost or want to play on hard mode, feel free to look at the code (it is a complete mess)</p>
+        <p>The console window also shows stuff sometimes...</p>
+    </div>
+
+    <div class="score-card">
+        <p>Total Score:</p>
+        <p id="totalScore"></p>
+    </div>
+
     <div class="quiz-container">
         <div class="question-card">
             <h2>Question 1</h2>
-            <p>This is where the question goes.</p>
+            <p>What is your favorite color?</p>
             <div class="answer-container">
-                <div class="answer-card" data-answer="1">Option 1</div>
-                <div class="answer-card" data-answer="2">Option 2</div>
-                <div class="answer-card" data-answer="3">Option 3</div>
-                <div class="answer-card" data-answer="4">Option 4</div>
+                <div class="answer-card" data-answer="1">Red</div>
+                <div class="answer-card" data-answer="2">Green</div>
+                <div class="answer-card" data-answer="3">Blue</div>
+                <div class="answer-card" data-answer="4">Opaque Green Shaded Magenta</div>
             </div>
         </div>
         <div class="question-card">
             <h2>Question 2</h2>
-            <p>This is where the question goes.</p>
+            <p>Are you having a good day?</p>
             <div class="answer-container">
-                <div class="answer-card" data-answer="1">Option 1</div>
-                <div class="answer-card" data-answer="2">Option 2</div>
-                <div class="answer-card" data-answer="3">Option 3</div>
-                <div class="answer-card" data-answer="4">Option 4</div>
+                <div class="answer-card" data-answer="1">No</div>
+                <div class="answer-card" data-answer="2">Yes</div>
+                <div class="answer-card" data-answer="3">Sometimes</div>
+                <div class="answer-card" data-answer="4">No, but my friend carl is.</div>
             </div>
         </div>
         <div class="question-card">
             <h2>Question 3</h2>
-            <p>This is where the question goes.</p>
+            <p>Where do we go after death?</p>
             <div class="answer-container">
-                <div class="answer-card" data-answer="1">Option 1</div>
-                <div class="answer-card" data-answer="2">Option 2</div>
-                <div class="answer-card" data-answer="3">Option 3</div>
+                <div class="answer-card" data-answer="1">The Good Place</div>
+                <div class="answer-card" data-answer="2">The Bad Place</div>
+                <div class="answer-card" data-answer="3">Boob world</div>
                 <div class="answer-card" data-answer="4">Option 4</div>
             </div>
         </div>
          <div class="question-card">
             <h2>Question 4</h2>
-            <p>This is where the question goes.</p>
+            <p>Why are you here?</p>
             <div class="answer-container">
-                <div class="answer-card" data-answer="1">Option 1</div>
+                <div class="answer-card" data-answer="1">My mother gave birth to me</div>
                 <div class="answer-card" data-answer="2">Option 2</div>
                 <div class="answer-card" data-answer="3">Option 3</div>
                 <div class="answer-card" data-answer="4">Option 4</div>
@@ -162,8 +242,9 @@ body {
         </div>
     </div>
     <script>
-    document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function() {
     const answerCards = document.querySelectorAll(".answer-card");
+    const totalScoreDisplay = document.getElementById("totalScore");
     const submitButton = document.getElementById("submit-btn");
 
     let totalScore = 0;
@@ -185,6 +266,9 @@ body {
             // Add the selected answer to the total score
             totalScore += selectedAnswer;
             console.log("Total score:", totalScore);
+
+            // Update the total score display in the HTML
+            totalScoreDisplay.textContent = totalScore;
         });
     });
 
@@ -197,21 +281,12 @@ body {
         if (totalScore == 100) {
             window.location.href = "at100.html";
         }
+        if(totalScore == 0) {
+            window.location.href = "at0.html"
+        }
     });
 });
 
-
-///////////////////////////// WEBSITE SPECIFIC FUNCTIONS ////////////////////////////////////////////////
-
-// Fun mode
-function getRandomColor() {
-    return '#' + Math.floor(Math.random()*16777215).toString(16);
-}
-
-function funMode() {
-    document.body.style.backgroundColor = getRandomColor();
-    setInterval(funMode, 1000);
-}
     </script>
 </body>
 </html>
