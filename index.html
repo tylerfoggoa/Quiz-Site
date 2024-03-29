@@ -277,14 +277,23 @@
     submitButton.addEventListener("click", function() {
         // Redirect based on total score
         if (totalScore == 5) {
-            window.location.href = "at5.html";
+            window.location.href = "sites/at5.html";
         } 
 
         if (totalScore == 100) {
-            window.location.href = "at100.html";
+            window.location.href = "sites/at100.html";
         }
         if(totalScore == 0) {
-            window.location.href = "at0.html"
+            window.location.href = "sites/at0.html";
+        }
+        if(totalScore == 6) {
+            window.location.href = "sites/at6.html";
+        }
+        if(totalScore >= 7 && totalScore <= 28) {
+            window.location.href = "sites/normal.html";
+        }
+        if(totalScore == 69) {
+            windw.location.href = "sites/veryFunny.html";
         }
     });
 });
