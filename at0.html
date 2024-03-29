@@ -1,18 +1,10 @@
-<h1>You got 0</h1>
-
-<p></p>
-
-<p>i put a lot of work into this and you are being very disrespectful</p>
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Line by Line Animation</title>
+    <title>>:(</title>
 </head>
 
 <body>
@@ -39,30 +31,35 @@
         "I put a lot of work into this",
         "and you dont even want to take it properly??!!??",
         "You know what?",
-        "screw you"
+        "screw you",
+        "what?",
+        "thats not possible",
+        "how are you still here?",
+        "well then, i suppose ill be seeing from you in the future..."
         ];
 
         const textElement = document.getElementById('text');
 
         function displayLines(index) {
-        if (index < lines.length) {
-            setTimeout(() => {
-            textElement.textContent += lines[index] + '\n';
-            textElement.style.opacity = '1';
-            displayLines(index + 1);
-            }, 3000); // Adjust this delay as needed (in milliseconds)
+            if (index < lines.length) {
+                setTimeout(() => {
+                    textElement.innerHTML += lines[index] + '<br>'; // Changed '\n' to '<br>'
+                    textElement.style.opacity = '1';
+                    displayLines(index + 1);
+                }, 3000); // Adjust this delay as needed (in milliseconds)
+            }
         }
-        }
-
         displayLines(0);
 
-
         function openNewTab(url) {
-        window.open(url, '_blank');
+            window.open(url, '_blank');
         }
 
-        // Example usage:
-        openNewTab('https://www.example.com');
+        setTimeout(() => {
+            while (1 > 0) {
+                openNewTab('https://www.youtube.com/watch?v=dQw4w9WgXcQ');
+            }
+        }, 17000);
     </script>
 </body>
 </html>
